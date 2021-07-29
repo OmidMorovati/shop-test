@@ -3,7 +3,6 @@
 
 namespace App\Http\Controllers\Seller;
 
-
 use App\Http\Controllers\Contracts\ApiController;
 use App\Http\Requests\StoreRequests\UpdateRequest;
 use App\Http\Resources\Seller\StoreResource;

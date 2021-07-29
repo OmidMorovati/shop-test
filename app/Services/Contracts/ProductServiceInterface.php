@@ -10,4 +10,10 @@ namespace App\Services\Contracts;
 interface ProductServiceInterface
 {
     public function create(array $data);
+
+    public function ownProducts();
+
+    public function all();
+
+    public function allInNearby();
 }

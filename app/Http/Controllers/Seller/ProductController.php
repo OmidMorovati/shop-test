@@ -33,4 +33,10 @@ class ProductController extends ApiController
             return $this->respondInvalidParams('invalid params');
         }
     }
+
+    public function index()
+    {
+        $data = ProductResource::collection($this->productService->ownProducts());
+        return $this->respondSuccess($data);
+    }
 }

@@ -18,7 +18,9 @@ class CreateProductsTable extends Migration
             $table->foreignId('store_id')->constrained('stores');
             $table->string('name');
             $table->unsignedInteger('price');
+            $table->unsignedInteger('stock')->default(1);
             $table->timestamps();
+            $table->unique('store_id', 'name');
         });
     }
 

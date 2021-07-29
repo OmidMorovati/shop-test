@@ -4,6 +4,8 @@
 namespace App\Repositories\Contracts;
 
 
+use Illuminate\Database\Eloquent\Model;
+
 interface RepositoryInterface
 {
     public function all(array $columns = ['*'], array $relations = []);
@@ -17,4 +19,6 @@ interface RepositoryInterface
     public function update(int $ID, array $item);
 
     public function delete(int $ID);
+
+    public function exists(array $conditions): bool;
 }

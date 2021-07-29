@@ -103,4 +103,10 @@ abstract class EloquentBaseRepository implements RepositoryInterface
 
         return $this->model->first($columns);
     }
+
+    public function exists(array $conditions):bool
+    {
+        $this->applyConditions($conditions);
+        return $this->model->exists();
+    }
 }

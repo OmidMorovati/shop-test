@@ -22,11 +22,11 @@ class StoreRepository extends EloquentBaseRepository implements StoreRepositoryI
         /** @var Store $model */
         $model = $this->find($id);
         if ($model) {
-            if (isset($item['lat'], $item['lng'])) {
-                $item['location'] = new Point($item['lat'], $item['lng']);
-                unset($item['lat'],$item['lng']);
+            if (isset($items['lat'], $items['lng'])) {
+                $model->location = new Point($items['lat'], $items['lng']);
+                unset($items['lat'],$items['lng']);
             }
-            $model->update($item);
+            $model->update($items);
             return $model;
         }
         throw new ModelNotFoundException('model not found!');

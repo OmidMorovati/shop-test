@@ -14,9 +14,11 @@ use App\Services\Contracts\AuthServiceInterface;
 use App\Services\Contracts\ProductServiceInterface;
 use App\Services\Contracts\SellerServiceInterface;
 use App\Services\Contracts\StoreServiceInterface;
+use App\Services\Contracts\UserServiceInterface;
 use App\Services\ProductService;
 use App\Services\SellerService;
 use App\Services\StoreService;
+use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SellerServiceInterface::class, SellerService::class);
         $this->app->bind(StoreServiceInterface::class, StoreService::class);
         $this->app->bind(ProductServiceInterface::class, ProductService::class);
+        $this->app->bind(UserServiceInterface::class, UserService::class);
+
         //bind repositories
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(StoreRepositoryInterface::class, StoreRepository::class);

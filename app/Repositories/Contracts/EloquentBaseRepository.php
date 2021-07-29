@@ -74,7 +74,7 @@ abstract class EloquentBaseRepository implements RepositoryInterface
 
     public function store(array $item): Model
     {
-        return $this->model::create($item);
+        return $this->model->create($item);
     }
 
     public function update(int $id, array $item): Model

@@ -46,7 +46,7 @@ class SellerService implements SellerServiceInterface
             DB::beginTransaction();
             /** @var User $user */
             $user = $this->userRepository->find($userId);
-            $user->givePermissionTo(Permission::ADD_SELLER);
+            $user->assignRole(Role::SELLER);
 
             $this->storeRepository->store([
                 'user_id' => $userId,

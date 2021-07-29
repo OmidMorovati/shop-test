@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('price');
             $table->timestamps();
-            $table->unique('store_id', 'name');
+            $table->unique(['store_id', 'name']);
         });
     }
 

@@ -28,18 +28,4 @@ class ProductRepository extends EloquentBaseRepository implements ProductReposit
     {
         return $this->model->whereIn('store_id', $ids)->get();
     }
-
-    public function stockIncrement(int $id, $amount = 1)
-    {
-        $product = $this->find($id);
-        $product->increment('stock', $amount);
-        return $product;
-    }
-
-    public function stockDecrement(int $id, $amount = 1)
-    {
-        $product = $this->find($id);
-        $product->decrement('stock', $amount);
-        return $product;
-    }
 }

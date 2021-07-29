@@ -19,10 +19,6 @@ use Illuminate\Support\Facades\DB;
 class StoreService implements StoreServiceInterface
 {
     /**
-     * @var UserRepository
-     */
-    private UserRepository $userRepository;
-    /**
      * @var StoreRepositoryInterface
      */
     private $storeRepository;

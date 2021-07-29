@@ -3,18 +3,24 @@
 namespace App\Providers;
 
 
+use App\Repositories\Contracts\OrderItemRepositoryInterface;
+use App\Repositories\Contracts\OrderRepositoryInterface;
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\Contracts\StoreRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Eloquent\OrderItemRepository;
+use App\Repositories\Eloquent\OrderRepository;
 use App\Repositories\Eloquent\ProductRepository;
 use App\Repositories\Eloquent\StoreRepository;
 use App\Repositories\Eloquent\UserRepository;
 use App\Services\AuthService;
 use App\Services\Contracts\AuthServiceInterface;
+use App\Services\Contracts\OrderServiceInterface;
 use App\Services\Contracts\ProductServiceInterface;
 use App\Services\Contracts\SellerServiceInterface;
 use App\Services\Contracts\StoreServiceInterface;
 use App\Services\Contracts\UserServiceInterface;
+use App\Services\OrderService;
 use App\Services\ProductService;
 use App\Services\SellerService;
 use App\Services\StoreService;
@@ -36,11 +42,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(StoreServiceInterface::class, StoreService::class);
         $this->app->bind(ProductServiceInterface::class, ProductService::class);
         $this->app->bind(UserServiceInterface::class, UserService::class);
+        $this->app->bind(OrderServiceInterface::class, OrderService::class);
 
         //bind repositories
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(StoreRepositoryInterface::class, StoreRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
+        $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
+        $this->app->bind(OrderItemRepositoryInterface::class, OrderItemRepository::class);
     }
 
     /**

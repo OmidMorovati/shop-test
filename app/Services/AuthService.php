@@ -3,10 +3,14 @@
 
 namespace App\Services;
 
+
+use App\Models\Role;
 use App\Models\User;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Eloquent\UserRepository;
 use App\Services\Contracts\AuthServiceInterface;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class AuthService
@@ -21,26 +25,36 @@ class AuthService implements AuthServiceInterface
 
     /**
      * AuthService constructor.
+     * @param UserRepositoryInterface $userRepository
      */
-    public function __construct()
+    public function __construct(UserRepositoryInterface $userRepository)
     {
-        $this->userRepository = new UserRepository();
+        $this->userRepository = $userRepository;
     }
 
     /**
      * @param string $name
      * @param string $email
      * @param string $password
-     * @return array
+     * @return array|bool
      */
-    public function register(string $name, string $email, string $password): array
+    public function register(string $name, string $email, string $password)
     {
-        /** @var User $user */
-        $user = $this->userRepository->store([
-            'name'     => $name,
-            'email'    => $email,
-            'password' => $password
-        ]);
+        try {
+            DB::beginTransaction();
+            /** @var User $user */
+            $user = $this->userRepository->store([
+                'name'     => $name,
+                'email'    => $email,
+                'password' => $password
+            ]);
+
+            $user->assignRole(Role::CUSTOMER);
+            DB::commit();
+        } catch (\Throwable $exception) {
+            DB::rollBack();
+            return false;
+        }
 
         return $this->makeToken($user);
     }
@@ -90,6 +104,7 @@ class AuthService implements AuthServiceInterface
         return [
             'access_token' => $token,
             'token_type'   => 'Bearer',
+            'role'         => $user->roles()->first()->name ?? null
         ];
     }
 }

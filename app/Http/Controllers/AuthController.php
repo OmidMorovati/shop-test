@@ -32,6 +32,9 @@ class AuthController extends ApiController
     public function register(RegisterRequest $request)
     {
         $data = $this->authService->register($request->name, $request->email, $request->password);
+        if (!$data) {
+            return $this->respondInternalError('Internal Error');
+        }
         return $this->respondItemCreated($data);
     }
 

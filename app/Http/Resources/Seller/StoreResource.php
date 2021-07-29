@@ -16,10 +16,9 @@ class StoreResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'          => $this->id,
-            'name'        => $this->name,
-            'email'       => $this->email,
-            'permissions' => $this->permissions->pluck('name')
+            'name' => $this->name,
+            'lat'  => $this->location->getLat(),
+            'lng'  => $this->location->getLng(),
         ];
     }
 }

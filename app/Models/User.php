@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    public function store()
+    {
+       return $this->hasOne(Store::class, 'user_id');
+    }
 }

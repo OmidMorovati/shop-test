@@ -11,7 +11,7 @@ use Prophecy\Exception\Doubler\ClassNotFoundException;
 
 abstract class EloquentBaseRepository implements RepositoryInterface
 {
-    private $model;
+    protected $model;
 
     abstract protected function model(): string;
 

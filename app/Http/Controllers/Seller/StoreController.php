@@ -31,7 +31,7 @@ class StoreController extends ApiController
             $data = StoreResource::make($this->storeService->update(Auth::user()->store->id, $request->validated()));
             return $this->respondSuccess($data);
         } catch (\Throwable $exception) {
-            Log::error(__CLASS__, ['store' => $exception->getMessage()]);
+            Log::error(__CLASS__, ['update' => $exception->getMessage()]);
             return $this->respondInvalidParams('invalid params');
         }
     }

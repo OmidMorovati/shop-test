@@ -5,7 +5,7 @@ namespace App\Http\Resources\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class StoreResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,8 @@ class StoreResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name,
-            'lat'  => optional($this->location)->getLat(),
-            'lng'  => optional($this->location)->getLng(),
+            'name'        => $this->name,
+            'permissions' => $this->permissions->pluck('name'),
         ];
     }
 }

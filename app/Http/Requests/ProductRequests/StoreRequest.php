@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests\StoreRequests;
+namespace App\Http\Requests\ProductRequests;
 
+use App\Models\Permission;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * @property integer userId
  */
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,7 +17,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return isset(Auth::user()->store);
+        return isset($this->user()->store) && $this->user()->can(Permission::ADD_PRODUCTS);
     }
 
     /**
@@ -28,9 +28,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'lat'  => ['required_with:lng', 'numeric'],
-            'lng'  => ['required_with:lat', 'numeric'],
-            'name' => ['required', 'string'],
+            'name'  => ['required', 'string'],
+            'price' => ['required', 'numeric'],
         ];
     }
 }

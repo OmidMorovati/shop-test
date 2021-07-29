@@ -20,7 +20,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->hasPermissionTo(Permission::ADD_SELLER);
+        return $this->user()->can(Permission::ADD_SELLER);
     }
 
     /**

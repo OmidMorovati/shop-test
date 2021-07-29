@@ -50,7 +50,7 @@ class SellerService implements SellerServiceInterface
 
             $this->storeRepository->store([
                 'user_id' => $userId,
-                'name'    => $user->name . 'shop'
+                'name'    => $user->name . '-shop'
             ]);
             DB::commit();
         } catch (\Throwable $exception) {

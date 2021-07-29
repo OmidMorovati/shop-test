@@ -4,7 +4,7 @@
 namespace App\Services\Contracts;
 
 /**
- * Interface SellerServiceInterface
+ * Interface StoreServiceInterface
  * @package App\Services\Contracts
  */
 interface StoreServiceInterface

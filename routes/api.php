@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\StoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,5 +29,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
     Route::prefix('/seller')->group(function () {
         Route::put('/store',[StoreController::class,'update']);
+        Route::post('/products',[ProductController::class,'store']);
     });
 });
